@@ -27,12 +27,6 @@
 | name            | string     | null: false                    |
 | user            | reference  | null: false, foreign_key: true |
 | price           | string     | null: false                    |
-| category        | string     | null: false                    |
-| status          | string     | null: false                    |
-| delivery-charge | string     | null: false                    |
-| area            | string     | null: false                    |
-| shipping-date   | string     | null: false                    |
-
 
 ### Association
 
