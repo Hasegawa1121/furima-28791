@@ -13,7 +13,7 @@
 | first-name      | string | null: false |
 | last-name-kana  | string | null: false |
 | first-name-kana | string | null: false |
-| birth-date      | string | null: false |
+| birth-date      | date   | null: false |
 
 ### Association
 
@@ -24,8 +24,9 @@
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| item-name       | string     | null: false                    |
-| exhibitor       | references | null: false, foreign_key: true |
+| name            | string     | null: false                    |
+| user            | reference  | null: false, foreign_key: true |
+| price           | string     | null: false                    |
 | category        | string     | null: false                    |
 | status          | string     | null: false                    |
 | delivery-charge | string     | null: false                    |
@@ -42,11 +43,25 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| user_id       | references | null: false, foreign_key: true |
-| credit-number | string     | null: false                    |
-| address       | string     | null: false                    |
+| user          | reference  | null: false, foreign_key: true |
+| item          | reference  | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to : users
+- belongs_to : items
+- has_one : address
+
+## address テーブル
+
+| Column        | Type   | Options     |
+| ------------- | ------ | ----------- |
+| postal_code   | string | null: false |
+| city          | string | null: false |
+| house_number  | string | null: false |
+| building-name | string | null: false |
+| phone-number  | string | null: false |
+
+### Association
+
+- belongs_to : purchase
