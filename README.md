@@ -18,7 +18,7 @@
 ### Association
 
 - has_many : items
-- has_many : purchase
+- has_many : purchases
 
 ## items テーブル
 
@@ -30,10 +30,10 @@
 
 ### Association
 
-- belongs_to : users
+- belongs_to : user
 - has_one : purchase
 
-## purchase テーブル
+## purchases テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
@@ -48,13 +48,14 @@
 
 ## address テーブル
 
-| Column        | Type   | Options     |
-| ------------- | ------ | ----------- |
-| postal_code   | string | null: false |
-| city          | string | null: false |
-| house_number  | string | null: false |
-| building-name | string | null: false |
-| phone-number  | string | null: false |
+| Column        | Type      | Options                       |
+| ------------- | --------- | ----------------------------- |
+| postal_code   | string    | null: false                   |
+| city          | string    | null: false                   |
+| house_number  | string    | null: false                   |
+| building-name | string    | null: false                   |
+| phone-number  | string    | null: false                   |
+| purchase      | reference | null: false foreign_key: true |
 
 ### Association
 
