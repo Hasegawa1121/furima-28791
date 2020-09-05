@@ -27,28 +27,18 @@
 | name             | string     | null: false                    |
 | user             | references | null: false, foreign_key: true |
 | price            | string     | null: false                    |
-| description      | text       | null: false, foreign_key: true |
-| images_id        | integer    | null: false, foreign_key: true |
-| category_id      | integer    | null: false, foreign_key: true |
-| condition_id     | integer    | null: false, foreign_key: true |
-| postage_payer_id | integer    | null: false, foreign_key: true |
-| prefecture_id    | integer    | null: false, foreign_key: true |
-| handling_time_id | integer    | null: false, foreign_key: true |
+| description      | text       | null: false                    |
+| images_id        | integer    | null: false                    |
+| category_id      | integer    | null: false                    |
+| condition_id     | integer    | null: false                    |
+| postage_payer_id | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| handling_time_id | integer    | null: false                    |
 
 ### Association
 
 - belongs_to : user
 - has_one : purchase
-- has_many : images
-
-## images テーブル
-
-| Column | Type       | Option                         |
-| ------ | ---------- | ------------------------------ |
-| image  | string     | null: false                    |
-| item   | references | null: false, foreign_key: true |
-
-- belongs_to : item
 
 ## purchases テーブル
 
@@ -68,7 +58,7 @@
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | postal_code    | string     | null: false                    |
-| Prefectures_id | integer    | null: false, foreign_key: true |
+| prefecture_id  | integer    | null: false                    |
 | city           | string     | null: false                    |
 | house_number   | string     | null: false                    |
 | building-name  | string     |                                |
