@@ -91,5 +91,35 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('First name kana is invalid')
     end
+    it '苗字に英字が使えない' do
+      @user.last_name = 'abcd'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Last name is invalid')
+    end
+    it '名前に英字が使えない' do
+      @user.first_name = 'abcd'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('First name is invalid')
+    end
+    it '苗字に数字が使えない' do
+      @user.last_name = '1234'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Last name is invalid')
+    end
+    it '名前に数字が使えない' do
+      @user.first_name = '1234'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('First name is invalid')
+    end
+    it '苗字に記号が使えない' do
+      @user.last_name = '!?+_'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Last name is invalid')
+    end
+    it '名前に記号が使えない' do
+      @user.first_name = '!?/_'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('First name is invalid')
+    end
   end
 end
