@@ -39,11 +39,17 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
-    it 'パスワードが半角英数混合' do
+    it 'パスワードが数字のみでは不可' do
       @user.password = '12345678'
       @user.password_confirmation = '12345678'
       @user.valid?
-      expect(@user.errors.full_messages).to include('Password 入力が正しくありません。')
+      expect(@user.errors.full_messages).to include('Password is invalid')
+    end
+    it 'パスワードが英字だけでは不可' do
+      @user.password = 'aaaacccc'
+      @user.password_confirmation = 'aaaacccc'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is invalid')
     end
     it '確認用パスワードも入力されている' do
       @user.password_confirmation = ''
@@ -55,5 +61,36 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('Birth date 入力が正しくありません。')
     end
+    it '苗字が必要' do
+      @user.last_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name 入力が正しくありません。")
+    end
+    it '名前が必要' do
+      @user.first_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name 入力が正しくありません。")
+    end
+    it '苗字のカナが必要' do
+      @user.last_name_kana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name kana 入力が正しくありません。")
+    end
+    it '名前のカナが必要' do
+      @user.first_name_kana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana 入力が正しくありません。")
+    end
+    it '苗字のカナが全角でなければならない' do
+      @user.last_name_kana = 'ｱ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name kana is invalid")
+    end
+    it '名前のカナが全角でなければならない' do
+      @user.first_name_kana = 'ｱ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana is invalid")
+    end
   end
+
 end
