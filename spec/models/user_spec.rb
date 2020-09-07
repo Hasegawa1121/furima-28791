@@ -64,33 +64,32 @@ RSpec.describe User, type: :model do
     it '苗字が必要' do
       @user.last_name = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name 入力が正しくありません。")
+      expect(@user.errors.full_messages).to include('Last name 入力が正しくありません。')
     end
     it '名前が必要' do
       @user.first_name = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name 入力が正しくありません。")
+      expect(@user.errors.full_messages).to include('First name 入力が正しくありません。')
     end
     it '苗字のカナが必要' do
       @user.last_name_kana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name kana 入力が正しくありません。")
+      expect(@user.errors.full_messages).to include('Last name kana 入力が正しくありません。')
     end
     it '名前のカナが必要' do
       @user.first_name_kana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name kana 入力が正しくありません。")
+      expect(@user.errors.full_messages).to include('First name kana 入力が正しくありません。')
     end
     it '苗字のカナが全角でなければならない' do
       @user.last_name_kana = 'ｱ'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name kana is invalid")
+      expect(@user.errors.full_messages).to include('Last name kana is invalid')
     end
     it '名前のカナが全角でなければならない' do
       @user.first_name_kana = 'ｱ'
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name kana is invalid")
+      expect(@user.errors.full_messages).to include('First name kana is invalid')
     end
   end
-
 end
