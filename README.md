@@ -28,7 +28,7 @@
 | user             | references | null: false, foreign_key: true |
 | price            | string     | null: false                    |
 | description      | text       | null: false                    |
-| images_id        | integer    | null: false                    |
+| image            | string     | null: false                    |
 | category_id      | integer    | null: false                    |
 | condition_id     | integer    | null: false                    |
 | postage_payer_id | integer    | null: false                    |
