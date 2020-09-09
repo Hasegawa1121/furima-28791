@@ -31,29 +31,29 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
       it 'カテゴリー選択が必要' do
-        @item.category_id = ''
+        @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include('Category must be other than 0')
       end
       it '商品の状態の選択が必要' do
-        @item.condition_id = ''
+        @item.condition_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition can't be blank")
+        expect(@item.errors.full_messages).to include('Condition must be other than 0')
       end
       it '配送料の負担についての情報が必要' do
-        @item.postage_payer_id = ''
+        @item.postage_payer_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Postage payer can't be blank")
+        expect(@item.errors.full_messages).to include('Postage payer must be other than 0')
       end
       it '発送元の地域についての情報が必要' do
-        @item.prefecture_id = ''
+        @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
       end
       it '発送までの日数についての情報が必要' do
-        @item.handling_id = ''
+        @item.handling_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Handling can't be blank")
+        expect(@item.errors.full_messages).to include('Handling must be other than 0')
       end
       it '価格についての情報が必要' do
         @item.price = ''
