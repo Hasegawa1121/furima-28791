@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 2020_09_08_040555) do
     t.bigint "user_id", null: false
     t.string "name"
     t.text "description"
-    t.string "image"
     t.integer "category_id"
     t.integer "condition_id"
     t.integer "postage_payer_id"
