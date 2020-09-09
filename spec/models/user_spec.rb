@@ -6,9 +6,8 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
-
-    context '新規登録がうまくいく場合'do
-      it "全ての入力が正しい場合登録できる" do
+    context '新規登録がうまくいく場合' do
+      it '全ての入力が正しい場合登録できる' do
         expect(@user).to be_valid
       end
     end
@@ -130,7 +129,5 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('First name is invalid')
       end
     end
-
   end
-
 end
