@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_many :items
   has_many :purchases
 
-  NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/
-  NAME_REGEX_KANA = /\A[ァ-ヶー－]+\z/
+  NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze
+  NAME_REGEX_KANA = /\A[ァ-ヶー－]+\z/.freeze
 
   with_options presence: { message: '入力が正しくありません。' } do
     validates :nickname
