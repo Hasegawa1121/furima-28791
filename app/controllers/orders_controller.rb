@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :move_to_new_session, except: [:index]
+  before_action :move_to_index, except: [:index]
 
   def index
     @item = Item.find(params[:item_id])
@@ -9,7 +11,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     @order = Purchase.new(order_params)
     if @order.valid?
-      # pay_item
+      pay_item
       @order.save
       return redirect_to root_path
     else
@@ -30,6 +32,14 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency:'jpy'
     )
+  end
+
+  def move_to_new_session
+    redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def move_to_index
+    redirect_to root_path if current_user.id == @item.user_id
   end
 
 end
