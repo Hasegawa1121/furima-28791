@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-  has_many :purchases
+  has_many :orders
 
   NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze
   NAME_REGEX_KANA = /\A[ァ-ヶー－]+\z/.freeze
