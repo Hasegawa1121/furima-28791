@@ -5,6 +5,7 @@ RSpec.describe Address, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item, user_id: user.id, image: fixture_file_upload('public/images/test_image.png'))
     @purchase = FactoryBot.build(:purchase, user_id: user.id, item_id: item.id)
+    sleep(1)
   end
 
   describe '住所登録' do
