@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Address, type: :model do
   before do
-    order = FactoryBot.create(:order)
+    @order = FactoryBot.create(:order)
     @address = FactoryBot.build(:address, order_id: order.id)
   end
 

@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
-  before_action :move_to_new_session, except: [:index]
-  before_action :move_to_index, except: [:index]
+  before_action :set_item, only: [:index]
+  before_action :move_to_new_session, only: [:index]
+  before_action :move_to_index, only: [:index]
+  before_action :indexa, only: [:index]
 
   def index
     @item = Item.find(params[:item_id])
@@ -21,6 +23,10 @@ class OrdersController < ApplicationController
 
   private
 
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
   def order_params
     params.permit(:token, :postal_code, :prefecture_id, :city, :addresses, :building, :phone_number, :item_id).merge(user_id: current_user.id)
   end
@@ -40,6 +46,10 @@ class OrdersController < ApplicationController
 
   def move_to_index
     redirect_to root_path if current_user.id == @item.user_id
+  end
+
+  def indexa
+    redirect_to root_path if @item.order.present?
   end
 
 end
