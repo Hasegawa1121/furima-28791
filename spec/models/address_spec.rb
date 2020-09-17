@@ -13,5 +13,4 @@ RSpec.describe Address, type: :model do
       end
     end
   end
-
 end
