@@ -1,16 +1,14 @@
 class OrdersController < ApplicationController
-  before_action :set_item, only: [:index]
+  before_action :set_item, only: [:index, :create]
   before_action :move_to_new_session, only: [:index]
   before_action :move_to_index, only: [:index]
   before_action :indexa, only: [:index]
 
   def index
-    @item = Item.find(params[:item_id])
     @order = Purchase.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = Purchase.new(order_params)
     if @order.valid?
       pay_item
