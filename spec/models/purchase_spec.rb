@@ -16,18 +16,49 @@ RSpec.describe Address, type: :model do
       end
     end
 
-    context 'ユーザー新規登録がうまくいかない場合' do
-      it 'nicknameは必須' do
-        @user.nickname = ''
-        @user.valid?
-        expect(@user.errors.full_messages).to include('Nickname 入力が正しくありません。')
+    context '住所登録がうまくいかない場合' do
+      it '郵便番号が必須' do
+        @purchase.postal_code = ''
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Postal code can't be blank")
       end
-      it ''
-
+      it '郵便番号はハイフンが必要' do
+        @purchase.postal_code = '1234567'
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Postal code is invalid")
+      end
+      it '都道府県が必須' do
+        @purchase.prefecture_id = 0
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Prefecture must be other than 0")
+      end
+      it '市区町村が必須' do
+        @purchase.city = ''
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("City can't be blank")
+      end
+      it '番地が必須' do
+        @purchase.addresses = ''
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Addresses can't be blank")
+      end
+      it '電話番号が必須' do
+        @purchase.phone_number = ''
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Phone number can't be blank")
+      end
+      it "電話番号はハイフンが不要" do
+        @purchase.phone_number = '080-1234-5678'
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Phone number is invalid")
+      end
+      it "電話番号は11文字以内" do
+        @purchase.phone_number = '080123456789'
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Phone number is invalid")
+      end
     end
 
   end
-
-
 
 end
